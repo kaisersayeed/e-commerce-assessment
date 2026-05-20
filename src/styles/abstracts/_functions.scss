@@ -1,0 +1,12 @@
+@use 'sass:math';
+
+/// Removes the unit from a Sass number — needed before arithmetic across units.
+@function strip-unit($number) {
+  @return math.div($number, ($number * 0 + 1));
+}
+
+/// Converts a px value to rem, based on a 16px root font size.
+/// Usage: font-size: rem(14px)  →  0.875rem
+@function rem($px) {
+  @return math.div(strip-unit($px), 16) * 1rem;
+}

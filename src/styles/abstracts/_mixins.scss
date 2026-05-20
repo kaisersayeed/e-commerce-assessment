@@ -1,0 +1,92 @@
+@use 'sass:map';
+@use 'sass:list';
+@use '../tokens/breakpoints' as bp;
+
+/// Mobile-first breakpoint wrapper.
+/// Throws a compile-time error for unknown breakpoint names.
+/// Usage: @include respond-to('md') { ... }
+@mixin respond-to($bp-name) {
+  $value: map.get(bp.$breakpoints, $bp-name);
+
+  @if not $value {
+    @error 'Unknown breakpoint `#{$bp-name}`. '
+      + 'Available: #{map.keys(bp.$breakpoints)}.';
+  }
+
+  @media (min-width: $value) {
+    @content;
+  }
+}
+
+/// Visible focus outline using the brand focus token.
+@mixin focus-ring {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/// Applies focus-ring only on keyboard navigation, suppresses on mouse click.
+@mixin focus-visible-ring {
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+/// Single-line or multi-line text truncation.
+/// Usage: @include truncate(2)
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/// Standard card background, border, and radius.
+@mixin card-surface {
+  background: var(--color-bg-surface);
+  border: 0.5px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+}
+
+/// Builds a transition shorthand from a list of CSS properties.
+/// Automatically suppresses motion for prefers-reduced-motion users.
+/// Usage: @include transition(background, box-shadow)
+@mixin transition($properties...) {
+  $transitions: ();
+
+  @each $prop in $properties {
+    $transitions: list.append(
+      $transitions,
+      #{$prop} var(--duration-base) var(--ease-standard),
+      $separator: comma
+    );
+  }
+
+  transition: $transitions;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+/// Visually hides an element while keeping it accessible to screen readers.
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
