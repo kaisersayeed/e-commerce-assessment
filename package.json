@@ -6,6 +6,8 @@
     "build": "ng build",
     "lint": "eslint . --ext .ts,.html",
     "test": "vitest run",
+    "format": "prettier --write \"src/**/*.{ts,scss,html}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,scss,html}\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -27,6 +29,14 @@
     "@angular-devkit/build-angular": "^20.0.0",
     "@angular/cli": "^20.0.0",
     "@angular/compiler-cli": "^20.0.0",
+    "@angular-eslint/eslint-plugin": "^20.0.0",
+    "@angular-eslint/eslint-plugin-template": "^20.0.0",
+    "@angular-eslint/template-parser": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.2.0",
     "sass": "^1.77.0",
     "typescript": "~5.8.0"
   }
