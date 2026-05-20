@@ -1,4 +1,9 @@
-// Design token partials — forward them all here
-// @forward 'colors';
-// @forward 'spacing';
-// @forward 'typography';
+// CSS custom-property tokens — consumed anywhere via @use 'tokens' or @use '../tokens'
+@forward 'color';
+@forward 'spacing';
+@forward 'typography';
+@forward 'motion';
+@forward 'elevation';
+
+// SCSS variable tokens — must be @used explicitly to access $breakpoints
+@forward 'breakpoints';

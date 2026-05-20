@@ -1,0 +1,9 @@
+// SCSS variable only — consumed by the respond-to mixin, not exposed as CSS custom properties
+// (custom properties can't be used in @media queries)
+$breakpoints: (
+  'sm': 576px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  '2xl': 1440px,
+) !default;

@@ -1,0 +1,10 @@
+:root {
+  // ── Durations ────────────────────────────────────────────────────────────
+  --duration-fast: 100ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+
+  // ── Easing curves ────────────────────────────────────────────────────────
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+}
