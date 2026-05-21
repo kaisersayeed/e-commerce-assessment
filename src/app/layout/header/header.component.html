@@ -1,0 +1,50 @@
+<header class="header" role="banner">
+  <div class="header__container">
+    <a routerLink="/" class="header__logo" aria-label="Winning — go to home">
+      Winning<span class="header__logo-dot" aria-hidden="true">.</span>
+    </a>
+
+    <nav class="header__nav" aria-label="Main navigation">
+      <a
+        routerLink="/"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="header__nav-link--active"
+        class="header__nav-link"
+      >
+        Home
+      </a>
+      <a
+        routerLink="/products"
+        routerLinkActive="header__nav-link--active"
+        class="header__nav-link"
+      >
+        Products
+      </a>
+    </nav>
+
+    <div class="header__actions">
+      <button class="header__cart-btn" type="button" aria-label="Shopping cart, 0 items">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M1 1.75h2.1l1.42 7.11a1.5 1.5 0 0 0 1.48 1.14h6.52a1.5 1.5 0 0 0 1.47-1.21L15 4.25H4.5"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle cx="7" cy="16.25" r="1.25" fill="currentColor" />
+          <circle cx="14" cy="16.25" r="1.25" fill="currentColor" />
+        </svg>
+        <span class="header__cart-label">Cart</span>
+        <span class="header__cart-count" aria-hidden="true">0</span>
+      </button>
+    </div>
+  </div>
+</header>
