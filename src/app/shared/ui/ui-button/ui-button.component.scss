@@ -1,0 +1,75 @@
+@use '../../../../styles/abstracts' as a;
+
+.ui-button {
+  // Component-scoped design tokens — override per variant below
+  --btn-bg: var(--color-interactive-primary);
+  --btn-bg-hover: var(--color-interactive-primary-hover);
+  --btn-fg: var(--color-interactive-primary-fg);
+  --btn-radius: var(--radius-md);
+  --btn-padding: var(--space-3) var(--space-5);
+  --btn-font-size: var(--text-sm);
+  --btn-font-weight: var(--font-weight-bold);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border-radius: var(--btn-radius);
+  padding: var(--btn-padding);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  @include a.transition(background, box-shadow, transform);
+  @include a.focus-visible-ring;
+
+  &:hover:not([disabled]) {
+    background: var(--btn-bg-hover);
+  }
+
+  &:active:not([disabled]) {
+    transform: scale(0.98);
+  }
+
+  // Variants
+  &--secondary {
+    --btn-bg: var(--color-bg-surface);
+    --btn-bg-hover: var(--color-bg-sunken);
+    --btn-fg: var(--color-fg-base);
+
+    border: 1.5px solid var(--color-border-strong);
+  }
+
+  &--ghost {
+    --btn-bg: transparent;
+    --btn-bg-hover: var(--color-bg-sunken);
+    --btn-fg: var(--color-fg-muted);
+  }
+
+  // States
+  &--loading {
+    cursor: wait;
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  // Spinner — uses global @keyframes spin from base/_animations.scss
+  &__spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: var(--radius-full);
+    animation: spin 0.6s linear infinite;
+  }
+}
