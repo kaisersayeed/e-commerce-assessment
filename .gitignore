@@ -48,3 +48,4 @@ Thumbs.db
 
 # Storybook
 storybook-static/
+debug-storybook.log
