@@ -1,0 +1,57 @@
+<article
+  class="product-tile"
+  [class.product-tile--on-sale]="pricing().isOnSale"
+  [class.product-tile--loading]="loading()"
+>
+  @if (loading()) {
+    <div class="product-tile__image-wrap">
+      <ui-skeleton width="100%" height="100%" />
+    </div>
+    <div class="product-tile__body">
+      <ui-skeleton width="80%" height="14px" />
+      <ui-skeleton width="60%" height="24px" />
+      <ui-skeleton width="40%" height="12px" />
+      <ui-skeleton width="50%" height="12px" />
+    </div>
+    <div class="product-tile__btn-row">
+      <ui-skeleton width="100%" height="100%" />
+      <ui-skeleton width="100%" height="100%" />
+    </div>
+  } @else {
+    <div class="product-tile__image-wrap">
+      @if (pricing().isOnSale) {
+        <div class="product-tile__save-ribbon" aria-hidden="true">SAVE</div>
+      }
+      <img
+        class="product-tile__image"
+        [ngSrc]="product().image"
+        [alt]="product().name"
+        width="300"
+        height="300"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="product-tile__body">
+      <h2 class="product-tile__name">{{ product().name }}</h2>
+      <app-price-display [price]="product().price" [rrp]="product().rrp" />
+    </div>
+
+    <div class="product-tile__btn-row">
+      <button
+        class="product-tile__btn-atc"
+        [attr.aria-label]="'Add ' + product().name + ' to cart'"
+        (click)="onAddToCart()"
+      >
+        Add to Cart
+      </button>
+      <button
+        class="product-tile__btn-compare"
+        [attr.aria-label]="'Compare ' + product().name"
+        (click)="onCompare()"
+      >
+        Compare
+      </button>
+    </div>
+  }
+</article>
