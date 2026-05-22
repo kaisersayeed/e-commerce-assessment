@@ -23,7 +23,11 @@
     </nav>
 
     <div class="header__actions">
-      <button class="header__cart-btn" type="button" aria-label="Shopping cart, 0 items">
+      <button
+        class="header__cart-btn"
+        type="button"
+        [attr.aria-label]="'Shopping cart, ' + cartStore.count() + ' items'"
+      >
         <svg
           width="20"
           height="20"
@@ -43,7 +47,9 @@
           <circle cx="14" cy="16.25" r="1.25" fill="currentColor" />
         </svg>
         <span class="header__cart-label">Cart</span>
-        <span class="header__cart-count" aria-hidden="true">0</span>
+        @if (cartStore.count() > 0) {
+          <span class="header__cart-count" aria-live="polite">{{ cartStore.count() }}</span>
+        }
       </button>
     </div>
   </div>
