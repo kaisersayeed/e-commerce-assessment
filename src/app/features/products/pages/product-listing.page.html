@@ -1,0 +1,22 @@
+<div class="plp">
+  <div class="plp__container">
+    <header class="plp__header">
+      <nav class="plp__breadcrumb" aria-label="Breadcrumb">
+        <a href="/" class="plp__breadcrumb-link">Home</a>
+        <span class="plp__breadcrumb-sep" aria-hidden="true">/</span>
+        <span aria-current="page">Products</span>
+      </nav>
+      <h1 class="plp__title">All products</h1>
+      @if (!store.isLoading()) {
+      <p class="plp__count">{{ store.products().length }} products</p>
+      }
+    </header>
+
+    <app-product-grid
+      [products]="store.products()"
+      [loading]="store.isLoading()"
+      [error]="store.error()"
+      (addToCart)="onAddToCart($event)"
+    />
+  </div>
+</div>

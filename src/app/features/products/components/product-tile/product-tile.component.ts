@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { PriceDisplayComponent } from '../../../../shared/ui/price-display/price-display.component';
 import { UiSkeletonComponent } from '../../../../shared/ui/ui-skeleton/ui-skeleton.component';
 import { Product, getProductPricing } from '../../../../shared/models/product.model';
@@ -7,7 +6,7 @@ import { Product, getProductPricing } from '../../../../shared/models/product.mo
 @Component({
   selector: 'app-product-tile',
   standalone: true,
-  imports: [NgOptimizedImage, PriceDisplayComponent, UiSkeletonComponent],
+  imports: [PriceDisplayComponent, UiSkeletonComponent],
   templateUrl: './product-tile.component.html',
   styleUrl: './product-tile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

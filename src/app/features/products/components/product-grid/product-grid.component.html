@@ -1,0 +1,29 @@
+<div class="product-grid">
+  @if (loading()) {
+    <div class="product-grid__grid">
+      @for (item of skeletonItems; track $index) {
+        <app-product-tile [product]="skeletonProduct" [loading]="true" />
+      }
+    </div>
+  } @else if (error()) {
+    <div class="product-grid__state" role="alert">
+      <p class="product-grid__state-title">Something went wrong</p>
+      <p class="product-grid__state-desc">{{ error() }}</p>
+    </div>
+  } @else if (products().length === 0) {
+    <div class="product-grid__state">
+      <p class="product-grid__state-title">No products found</p>
+      <p class="product-grid__state-desc">Try adjusting your price filter.</p>
+    </div>
+  } @else {
+    <div class="product-grid__grid">
+      @for (product of products(); track product.sku) {
+        <app-product-tile
+          [product]="product"
+          (addToCart)="addToCart.emit($event)"
+          (compare)="compare.emit($event)"
+        />
+      }
+    </div>
+  }
+</div>
