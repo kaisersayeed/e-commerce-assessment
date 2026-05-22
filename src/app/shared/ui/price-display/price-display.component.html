@@ -1,0 +1,13 @@
+<div class="price-display">
+  <span class="price-display__current" [attr.aria-label]="'Price ' + price()">
+    ${{ price() }}
+  </span>
+  @if (pricing().isOnSale) {
+    <div class="price-display__sale-info">
+      <span class="price-display__savings">
+        <strong>${{ pricing().savings }} ({{ pricing().savingsPct }}%)</strong> off
+      </span>
+      <span class="price-display__rrp">RRP ${{ rrp() }}</span>
+    </div>
+  }
+</div>
