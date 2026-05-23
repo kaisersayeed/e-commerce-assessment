@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  inject,
-  Injector,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
 import { Dialog } from '@angular/cdk/dialog';
 import { ProductGridComponent } from '../components/product-grid/product-grid.component';
 import {
@@ -25,29 +18,23 @@ import { Product } from '../../../shared/models/product.model';
   styleUrl: './product-listing.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductListingPage implements OnInit {
+export class ProductListingPage {
   protected readonly store = inject(ProductsStore);
   protected readonly cartStore = inject(CartStore);
   protected readonly productsService = inject(ProductsService);
-  private readonly injector = inject(Injector);
   private readonly dialog = inject(Dialog);
 
-  ngOnInit(): void {
-    this.store.setLoading();
+  private readonly _statusEffect = effect(() => {
+    const status = this.productsService.productsResource.status();
 
-    effect(
-      () => {
-        const status = this.productsService.productsResource.status();
-
-        if (status === 'resolved') {
-          this.store.setProducts(this.productsService.productsResource.value()!);
-        } else if (status === 'error') {
-          this.store.setError('Failed to load products.');
-        }
-      },
-      { injector: this.injector }
-    );
-  }
+    if (status === 'loading' || status === 'reloading') {
+      this.store.setLoading();
+    } else if (status === 'resolved') {
+      this.store.setProducts(this.productsService.productsResource.value()!);
+    } else if (status === 'error') {
+      this.store.setError('Failed to load products.');
+    }
+  });
 
   onAddToCart(product: Product): void {
     this.cartStore.add(product);
