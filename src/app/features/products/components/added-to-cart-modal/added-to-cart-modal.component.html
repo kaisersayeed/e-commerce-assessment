@@ -1,0 +1,76 @@
+<div class="atc-modal" role="dialog" aria-modal="true" aria-labelledby="atc-modal-title">
+  <div class="atc-modal__header">
+    <div class="atc-modal__title" id="atc-modal-title">
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <circle cx="9" cy="9" r="9" fill="rgba(255,255,255,0.25)" />
+        <path
+          d="M5 9l3 3 5-5"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      Added to cart
+    </div>
+    <button class="atc-modal__close" type="button" aria-label="Close" (click)="close()">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M2 2l12 12M14 2L2 14"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <div class="atc-modal__body">
+    <div class="atc-modal__product">
+      <div class="atc-modal__thumb">
+        <img [src]="data.product.image" [alt]="data.product.name" />
+      </div>
+      <div class="atc-modal__product-info">
+        <p class="atc-modal__product-name">{{ data.product.name }}</p>
+        <p class="atc-modal__product-price">
+          {{ pricing.price | currency: 'AUD' : 'symbol-narrow' }}
+        </p>
+        @if (pricing.isOnSale) {
+          <p class="atc-modal__product-savings">
+            You save <strong>{{ pricing.savingsPct }}%</strong> off RRP
+          </p>
+        }
+      </div>
+    </div>
+
+    <div class="atc-modal__divider"></div>
+
+    <div class="atc-modal__cart-summary">
+      <span class="atc-modal__summary-label">Items in your cart</span>
+      <span class="atc-modal__summary-val" aria-live="polite">{{ cartStore.count() }}</span>
+    </div>
+
+    <div class="atc-modal__actions">
+      <button class="atc-modal__btn atc-modal__btn--primary" type="button" (click)="close()">
+        View cart
+      </button>
+      <button class="atc-modal__btn atc-modal__btn--secondary" type="button" (click)="close()">
+        Continue shopping
+      </button>
+    </div>
+  </div>
+</div>

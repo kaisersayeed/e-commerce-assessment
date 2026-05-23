@@ -6,7 +6,12 @@ import {
   Injector,
   OnInit,
 } from '@angular/core';
+import { Dialog } from '@angular/cdk/dialog';
 import { ProductGridComponent } from '../components/product-grid/product-grid.component';
+import {
+  AddedToCartModalComponent,
+  AddedToCartModalData,
+} from '../components/added-to-cart-modal/added-to-cart-modal.component';
 import { ProductsStore } from '../store/products.store';
 import { CartStore } from '../store/cart.store';
 import { ProductsService } from '../services/products.service';
@@ -25,6 +30,7 @@ export class ProductListingPage implements OnInit {
   protected readonly cartStore = inject(CartStore);
   protected readonly productsService = inject(ProductsService);
   private readonly injector = inject(Injector);
+  private readonly dialog = inject(Dialog);
 
   ngOnInit(): void {
     this.store.setLoading();
@@ -45,5 +51,11 @@ export class ProductListingPage implements OnInit {
 
   onAddToCart(product: Product): void {
     this.cartStore.add(product);
+    this.dialog.open<void, AddedToCartModalData>(AddedToCartModalComponent, {
+      data: { product },
+      backdropClass: 'modal-backdrop',
+      panelClass: 'modal-panel',
+      hasBackdrop: true,
+    });
   }
 }

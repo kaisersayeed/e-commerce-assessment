@@ -1,2 +1,12 @@
 @use 'tokens';
 @use 'base';
+
+.modal-backdrop {
+  background: var(--color-bg-overlay);
+}
+
+.modal-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
