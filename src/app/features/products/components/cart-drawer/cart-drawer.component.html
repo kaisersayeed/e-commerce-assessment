@@ -1,0 +1,136 @@
+<div class="cart-drawer" role="dialog" aria-label="Shopping cart" aria-modal="true">
+  <div class="cart-drawer__header">
+    <div class="cart-drawer__title-group">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M1 1.75h2.1l1.42 7.11a1.5 1.5 0 0 0 1.48 1.14h6.52a1.5 1.5 0 0 0 1.47-1.21L15 4.25H4.5"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <circle cx="7" cy="16.25" r="1.25" fill="currentColor" />
+        <circle cx="14" cy="16.25" r="1.25" fill="currentColor" />
+      </svg>
+      <h2 class="cart-drawer__title">Your Cart</h2>
+    </div>
+    <button class="cart-drawer__close" type="button" aria-label="Close cart" (click)="close()">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M2 2l12 12M14 2L2 14"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
+      </svg>
+    </button>
+  </div>
+
+  @if (cartStore.lineItems().length === 0) {
+    <div class="cart-drawer__empty">
+      <p class="cart-drawer__empty-title">Your cart is empty</p>
+      <p class="cart-drawer__empty-desc">Add some products to get started</p>
+    </div>
+  } @else {
+    <div class="cart-drawer__items">
+      @for (item of cartStore.lineItems(); track item.product.sku) {
+        <div class="cart-drawer__item">
+          <img
+            class="cart-drawer__item-img"
+            [src]="item.product.image"
+            [alt]="item.product.name"
+            loading="lazy"
+          />
+          <div class="cart-drawer__item-body">
+            <p class="cart-drawer__item-name">{{ item.product.name }}</p>
+            <div class="cart-drawer__item-row">
+              <div
+                class="cart-drawer__qty"
+                role="group"
+                [attr.aria-label]="'Quantity for ' + item.product.name"
+              >
+                <button
+                  class="cart-drawer__qty-btn"
+                  type="button"
+                  [attr.aria-label]="'Decrease quantity of ' + item.product.name"
+                  (click)="cartStore.decrement(item.product.sku)"
+                >
+                  −
+                </button>
+                <span class="cart-drawer__qty-value" aria-live="polite">{{ item.quantity }}</span>
+                <button
+                  class="cart-drawer__qty-btn"
+                  type="button"
+                  [attr.aria-label]="'Increase quantity of ' + item.product.name"
+                  (click)="cartStore.add(item.product)"
+                >
+                  +
+                </button>
+              </div>
+              <button
+                class="cart-drawer__remove"
+                type="button"
+                [attr.aria-label]="'Remove ' + item.product.name + ' from cart'"
+                (click)="cartStore.remove(item.product.sku)"
+              >
+                × Remove
+              </button>
+              <span class="cart-drawer__item-price">
+                {{ item.product.price * item.quantity | currency: 'USD' : 'symbol' : '1.0-0' }}
+              </span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="cart-drawer__footer">
+      <button class="cart-drawer__clear" type="button" (click)="cartStore.clear()">
+        Clear cart
+      </button>
+      <button class="cart-drawer__checkout" type="button">
+        <span>Go to Checkout</span>
+        <span>{{ cartStore.subtotal() | currency: 'USD' : 'symbol' : '1.0-0' }}</span>
+      </button>
+      <button class="cart-drawer__gpay" type="button" aria-label="Pay with Google Pay">
+        <span class="cart-drawer__gpay-g">G</span><span class="cart-drawer__gpay-pay">Pay</span>
+        <span class="cart-drawer__gpay-divider" aria-hidden="true"></span>
+        <span>···· 4320</span>
+      </button>
+      <p class="cart-drawer__delivery">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M1 3h9v7H1zM10 5h2.5L14 7.5V10h-4V5z"
+            stroke="currentColor"
+            stroke-width="1.2"
+            stroke-linejoin="round"
+          />
+          <circle cx="3.5" cy="11.5" r="1" fill="currentColor" />
+          <circle cx="11.5" cy="11.5" r="1" fill="currentColor" />
+        </svg>
+        Free, Next day delivery available
+      </p>
+    </div>
+  }
+</div>

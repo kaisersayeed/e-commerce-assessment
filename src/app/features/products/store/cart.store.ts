@@ -48,6 +48,23 @@ export const CartStore = signalStore(
       delete next[sku];
       patchState(store, { items: next });
     },
+    decrement(sku: string): void {
+      const current = store.items();
+      const existing = current[sku];
+      if (!existing) return;
+      if (existing.quantity <= 1) {
+        const next = { ...current };
+        delete next[sku];
+        patchState(store, { items: next });
+      } else {
+        patchState(store, {
+          items: { ...current, [sku]: { ...existing, quantity: existing.quantity - 1 } },
+        });
+      }
+    },
+    clear(): void {
+      patchState(store, { items: {} });
+    },
     hasItem(sku: string) {
       return computed(() => sku in store.items());
     },

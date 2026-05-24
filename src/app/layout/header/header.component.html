@@ -27,6 +27,7 @@
         class="header__cart-btn"
         type="button"
         [attr.aria-label]="'Shopping cart, ' + cartStore.count() + ' items'"
+        (click)="openCart()"
       >
         <svg
           width="20"
