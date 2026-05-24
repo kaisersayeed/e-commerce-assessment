@@ -65,4 +65,33 @@ describe('CartStore', () => {
     });
     expect(store.subtotal()).toBe(200);
   });
+
+  it('should decrement quantity by 1', () => {
+    TestBed.runInInjectionContext(() => {
+      store.add(mockProduct);
+      store.add(mockProduct);
+      store.decrement(mockProduct.sku);
+    });
+    expect(store.lineItems()[0]!.quantity).toBe(1);
+    expect(store.count()).toBe(1);
+  });
+
+  it('should remove line when decrementing below 1', () => {
+    TestBed.runInInjectionContext(() => {
+      store.add(mockProduct);
+      store.decrement(mockProduct.sku);
+    });
+    expect(store.count()).toBe(0);
+    expect(store.lineItems().length).toBe(0);
+  });
+
+  it('should clear all items', () => {
+    TestBed.runInInjectionContext(() => {
+      store.add(mockProduct);
+      store.add({ ...mockProduct, sku: 'TEST-002' });
+      store.clear();
+    });
+    expect(store.count()).toBe(0);
+    expect(store.lineItems().length).toBe(0);
+  });
 });
