@@ -7,8 +7,8 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { CartItem } from '../../../shared/models/cart.model';
-import { Product } from '../../../shared/models/product.model';
+import { CartItem } from '@app/shared/models/cart.model';
+import { Product } from '@app/shared/models/product.model';
 
 const CART_STORAGE_KEY = 'wg_cart';
 

@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { Product } from '../../../../shared/models/product.model';
+import { Product } from '@app/shared/models/product.model';
 import { ProductTileComponent } from './product-tile.component';
 
 const onSaleProduct: Product = {

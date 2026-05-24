@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { DialogRef } from '@angular/cdk/dialog';
 import { CartDrawerComponent } from './cart-drawer.component';
-import { CartStore } from '../../store/cart.store';
-import { Product } from '../../../../shared/models/product.model';
+import { CartStore } from '@app/features/products/store/cart.store';
+import { Product } from '@app/shared/models/product.model';
 
 const mockProducts: Product[] = [
   {

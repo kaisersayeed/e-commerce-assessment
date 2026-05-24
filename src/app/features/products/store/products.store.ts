@@ -1,6 +1,6 @@
 import { computed } from '@angular/core';
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
-import { Product } from '../../../shared/models/product.model';
+import { Product } from '@app/shared/models/product.model';
 
 type ProductsStatus = 'idle' | 'loading' | 'success' | 'error';
 

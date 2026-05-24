@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Dialog } from '@angular/cdk/dialog';
 import { ProductGridComponent } from '../components/product-grid/product-grid.component';
 import {
@@ -8,12 +9,12 @@ import {
 import { ProductsStore } from '../store/products.store';
 import { CartStore } from '../store/cart.store';
 import { ProductsService } from '../services/products.service';
-import { Product } from '../../../shared/models/product.model';
+import { Product } from '@app/shared/models/product.model';
 
 @Component({
   selector: 'app-product-listing-page',
   standalone: true,
-  imports: [ProductGridComponent],
+  imports: [ProductGridComponent, RouterLink],
   templateUrl: './product-listing.page.html',
   styleUrl: './product-listing.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

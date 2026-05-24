@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { getProductPricing, type ProductPricing } from '../../models/product.model';
+import { getProductPricing, type ProductPricing } from '@app/shared/models/product.model';
 
 @Component({
   selector: 'app-price-display',

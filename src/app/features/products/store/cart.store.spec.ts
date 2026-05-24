@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { CartStore } from './cart.store';
-import { Product } from '../../../shared/models/product.model';
+import { Product } from '@app/shared/models/product.model';
 
 const mockProduct: Product = {
   sku: 'TEST-001',

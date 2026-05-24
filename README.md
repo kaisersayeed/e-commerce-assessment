@@ -32,17 +32,16 @@ TypeScript is configured at maximum strictness: `strict`, `noUncheckedIndexedAcc
 
 ```
 src/app/
-├── core/          # App-wide constants, interceptors
+├── core/          # App-wide constants (API endpoints)
 ├── features/      # Feature modules (products, home)
 │   └── products/
-│       ├── components/   # Dumb + smart components scoped to this feature
+│       ├── components/   # Components scoped to this feature
 │       ├── pages/        # Routed entry points (one per route)
 │       ├── services/     # Data fetching (ProductsService + resource)
 │       └── store/        # ProductsStore, CartStore
 ├── layout/        # Shell, Header, Footer — structural chrome
 └── shared/
     ├── models/    # Interfaces + pure functions (Product, Cart, getProductPricing)
-    ├── pipes/     # Shared pipes
     └── ui/        # Design system primitives (PriceDisplay, UiSkeleton, UiButton)
 ```
 

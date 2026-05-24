@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ProductTileComponent } from './product-tile.component';
-import { Product } from '../../../../shared/models/product.model';
+import { Product } from '@app/shared/models/product.model';
 
 const onSaleProduct: Product = {
   sku: 'TEST-001',

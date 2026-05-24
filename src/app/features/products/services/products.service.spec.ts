@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ProductsService } from './products.service';
-import { PRODUCTS_ENDPOINT } from '../../../core/constants/api.constants';
-import { Product } from '../../../shared/models/product.model';
+import { PRODUCTS_ENDPOINT } from '@app/core/constants/api.constants';
+import { Product } from '@app/shared/models/product.model';
 
 const mockProducts: Product[] = [
   { sku: 'A-001', name: 'Product A', price: 100, rrp: 150, image: '' },

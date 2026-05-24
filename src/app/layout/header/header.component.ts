@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Dialog } from '@angular/cdk/dialog';
-import { CartStore } from '../../features/products/store/cart.store';
-import { CartDrawerComponent } from '../../features/products/components/cart-drawer/cart-drawer.component';
+import { CartStore } from '@app/features/products/store/cart.store';
+import { CartDrawerComponent } from '@app/features/products/components/cart-drawer/cart-drawer.component';
 
 @Component({
   selector: 'app-header',

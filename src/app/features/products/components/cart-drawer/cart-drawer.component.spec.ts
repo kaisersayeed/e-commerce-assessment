@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { DialogRef } from '@angular/cdk/dialog';
 import { CartDrawerComponent } from './cart-drawer.component';
-import { CartStore } from '../../store/cart.store';
+import { CartStore } from '@app/features/products/store/cart.store';
 
 const mockDialogRef = { close: vi.fn() };
 

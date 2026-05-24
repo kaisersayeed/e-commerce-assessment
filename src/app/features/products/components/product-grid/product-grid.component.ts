@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { ProductTileComponent } from '../product-tile/product-tile.component';
-import { Product } from '../../../../shared/models/product.model';
+import { Product } from '@app/shared/models/product.model';
 
 @Component({
   selector: 'app-product-grid',

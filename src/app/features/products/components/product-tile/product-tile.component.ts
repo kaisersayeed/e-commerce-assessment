@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
-import { PriceDisplayComponent } from '../../../../shared/ui/price-display/price-display.component';
-import { UiSkeletonComponent } from '../../../../shared/ui/ui-skeleton/ui-skeleton.component';
-import { Product, getProductPricing } from '../../../../shared/models/product.model';
+import { PriceDisplayComponent } from '@app/shared/ui/price-display/price-display.component';
+import { UiSkeletonComponent } from '@app/shared/ui/ui-skeleton/ui-skeleton.component';
+import { Product, getProductPricing } from '@app/shared/models/product.model';
 
 @Component({
   selector: 'app-product-tile',
